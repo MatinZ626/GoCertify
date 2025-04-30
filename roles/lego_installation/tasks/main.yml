@@ -1,0 +1,110 @@
+- name: --- update ---
+  apt:
+    update_cache: yes
+  become: true
+  when: ansible_os_family == "Debian"
+  tags:
+    - update
+
+- name: --- update ---
+  yum:
+    name: '*'
+    state: latest
+  become: true
+  when: ansible_os_family == "RedHat"
+  tags:
+    - update
+
+- name: --- upgrade ---
+  apt:
+    upgrade: dist
+  become: true
+  when: ansible_os_family == "Debian"
+  tags:
+    - update
+
+# For RedHat, upgrade is usually included in the update task above.
+
+- name: --- message ---
+  debug:
+    msg: "System update now"
+  tags:
+    - update
+
+- name: --- install reqs (Debian) ---
+  apt:
+    name: ['curl','wget','tar']
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+  tags: install_reqs
+
+- name: --- install reqs (RedHat) ---
+  yum:
+    name: ['curl','wget','tar']
+    state: present
+  become: true
+  when: ansible_os_family == "RedHat"
+  tags: install_reqs
+
+- name: --- message ---
+  debug:
+    msg:  "reqs installed"
+  tags: install_reqs
+
+- name: --- get lego ---
+  shell: |
+    curl -s https://api.github.com/repos/go-acme/lego/releases/latest \
+        | grep "browser_download_url.*linux_amd64.tar.gz" \
+        | cut -d '"' -f 4
+  register: lego_download_url
+  changed_when: false
+  become: true
+  tags:
+    - install_lego
+
+- name: --- download lego  ---
+  get_url:
+    url: "{{  lego_download_url.stdout }}"
+    dest: "/tmp/lego.rar.gz"
+  become: true
+  tags:
+    - install_lego
+
+- name: --- debug lego download URL ---
+  debug:
+    msg: "Lego download URL is: {{ lego_download_url.stdout }}"
+
+- name: --- extract lego ---
+  unarchive:
+    src: "/tmp/lego.rar.gz"
+    dest: "/tmp/"
+    remote_src: yes
+  become: true
+  tags:
+    - install_lego
+
+- name: --- move to bin ---
+  copy:
+    src: "/tmp/lego"
+    dest: "/usr/local/bin/lego"
+    mode: '0755'
+    remote_src: true
+  become: true
+  tags:
+    - install_lego
+
+- name: --- confrim installation ---
+  command: lego --version
+  register: lego_check
+  changed_when: false
+  tags:
+    - install_lego
+
+- name: ---  message ---
+  debug:
+   msg: 'Lego installed successfully: {{ lego_check.stdout }}'
+  tags:
+    - install_lego
+
+

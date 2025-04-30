@@ -1,0 +1,5 @@
+api_key: "{{ lookup('env', 'CLOUDFLARE_DNS_API_TOKEN') }}"
+domains:
+  - "domain.example"
+  - "www.domain.example"
+email: "email@example.com"
