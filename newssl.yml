@@ -1,5 +1,0 @@
-- hosts: new-servers
-  vars_files:
-    - main.yml
-  roles:
-    - new_ssl

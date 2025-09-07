@@ -1,20 +1,3 @@
-#- name: Run lego with domains from inventory
-#  ansible.builtin.shell: |
-#    lego --dns cloudflare \
-#         --email {{ email }} \
-#         --accept-tos \
-#    {% for d in domains %}
-#      --domains {{ d | trim }} \
-#    {% endfor %}
-#         run
-#  environment:
-#   CLOUDFLARE_DNS_API_TOKEN: "{{ API_KEY }}"
-#    CLOUDFLARE_EMAIL: "{{ email }}"
-#  tags: get_ssl
-
-
-
-
 - name: Run lego with domains from inventory
   ansible.builtin.shell: |
     lego --dns cloudflare \
@@ -28,3 +11,4 @@
     CLOUDFLARE_DNS_API_TOKEN: "{{ api_key }}"
     CLOUDFLARE_EMAIL: "{{ email }}"
   tags: get_ssl
+
