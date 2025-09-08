@@ -6,20 +6,25 @@ dns-provider:
     api_key: "arvan token"
 
 domains:
-  cloudflare: []
-#If it is not empty, use the structure below:
+  cloudflare: [] # Keep it defined, even if empty. Otherwise, comment it.
+
+#If you have Cloudflare domains, use the structure below:
 
   # cloudflare:
     #- "domain.example"
     #- "www.domain.example"
 
-  arvan: []   # keep defined, even if empty
-# If it is not empty, use the structure below:
+  arvan: []   # Keep it defined, even if empty. Otherwise, comment it.
+
+#If you have Arvancloud domains, use the structure below:
 
   #arvan: 
     #- "domain.example"
     #- "www.domain.example" 
 
+
+# The email address that Let’s Encrypt uses
+letsencrypt_email: "email@example.com"
 
 ### yes or no
 install_lego: "no"

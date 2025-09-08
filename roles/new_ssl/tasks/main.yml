@@ -2,7 +2,7 @@
 - name: Run lego with Cloudflare domains
   ansible.builtin.shell: |
     lego --dns cloudflare \
-         --email {{ email }} \
+         --email {{ letsencrypt_email }} \
          --accept-tos \
     {% for d in domains.cloudflare %}
       --domains {{ d | trim }} \
@@ -19,7 +19,7 @@
 - name: Run lego with Arvan domains
   ansible.builtin.shell: |
     lego --dns arvancloud \
-         --email {{ email }} \
+         --email {{ letsencrypt_email }} \
          --accept-tos \
     {% for d in domains.arvan %}
       --domains {{ d | trim }} \
