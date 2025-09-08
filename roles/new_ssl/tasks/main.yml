@@ -1,14 +1,31 @@
-- name: Run lego with domains from inventory
+# --- Cloudflare Section ---
+- name: Run lego with Cloudflare domains
   ansible.builtin.shell: |
     lego --dns cloudflare \
          --email {{ email }} \
          --accept-tos \
-    {% for d in domains %}
+    {% for d in domains.cloudflare %}
       --domains {{ d | trim }} \
     {% endfor %}
          run
   environment:
-    CLOUDFLARE_DNS_API_TOKEN: "{{ api_key }}"
-    CLOUDFLARE_EMAIL: "{{ email }}"
+    CLOUDFLARE_DNS_API_TOKEN: "{{ dns-provider.cloudflare.api_key }}"
+    CLOUDFLARE_EMAIL: "{{ dns-provider.cloudflare.email }}"
   tags: get_ssl
+  when: domains.cloudflare
 
+
+# --- Arvan Section ---
+- name: Run lego with Arvan domains
+  ansible.builtin.shell: |
+    lego --dns arvancloud \
+         --email {{ email }} \
+         --accept-tos \
+    {% for d in domains.arvan %}
+      --domains {{ d | trim }} \
+    {% endfor %}
+         run
+  environment:
+    ARVANCLOUD_API_KEY: "{{ dns-provider.arvan.api_key }}"
+  tags: get_ssl
+  when: domains.arvan
