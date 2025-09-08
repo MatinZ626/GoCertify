@@ -1,11 +1,25 @@
-api_key: "cloudfalre api"
+dns-provider:
+  cloudfalre:
+    api_key: "cloudflare token"
+    email: "email@example.com"
+  arvan:
+    api_key: "arvan token"
+
 domains:
-  - "domain.example"
-  - "www.domain.example"
-email: "email@example.com"
+  cloudflare: []
+#If it is not empty, use the structure below:
 
-###yes or no
+  # cloudflare:
+    #- "domain.example"
+    #- "www.domain.example"
+
+  arvan: []   # keep defined, even if empty
+# If it is not empty, use the structure below:
+
+  #arvan: 
+    #- "domain.example"
+    #- "www.domain.example" 
+
+
+### yes or no
 install_lego: "no"
-
-### cloudflare or arvan
-dns_provider: "cloudflare"

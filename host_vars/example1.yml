@@ -1,0 +1,11 @@
+api_key: "cloudfalre api"
+domains:
+  - "domain.example"
+  - "www.domain.example"
+email: "email@example.com"
+
+###yes or no
+install_lego: "no"
+
+### cloudflare or arvan
+dns_provider: "cloudflare"
