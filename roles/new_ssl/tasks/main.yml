@@ -9,8 +9,8 @@
     {% endfor %}
          run
   environment:
-    CLOUDFLARE_DNS_API_TOKEN: "{{ dns-provider.cloudflare.api_key }}"
-    CLOUDFLARE_EMAIL: "{{ dns-provider.cloudflare.email }}"
+    CLOUDFLARE_DNS_API_TOKEN: "{{ dns_provider.cloudflare.api_key }}"
+    CLOUDFLARE_EMAIL: "{{ dns_provider.cloudflare.email }}"
   tags: get_ssl
   when: domains.cloudflare
 
@@ -26,6 +26,6 @@
     {% endfor %}
          run
   environment:
-    ARVANCLOUD_API_KEY: "{{ dns-provider.arvan.api_key }}"
+    ARVANCLOUD_API_KEY: "{{ dns_provider.arvan.api_key }}"
   tags: get_ssl
   when: domains.arvan

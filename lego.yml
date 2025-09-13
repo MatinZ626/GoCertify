@@ -1,6 +1,4 @@
 - hosts: new-ssl
-  vars_files:
-    - main.yml
   roles:
     - lego_installation
     - new_ssl
