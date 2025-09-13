@@ -10,7 +10,7 @@ It currently supports the following DNS providers:
 
 ## 🚀 Features
 
-- Installs [Lego](https://go-acme.github.io/lego/) on the target host.
+- Installs Lego on the target host.
 - Automates the DNS-01 ACME challenge.
 - Requests and renews SSL/TLS certificates from Let's Encrypt.
 
