@@ -1,5 +1,5 @@
-dns-provider:
-  cloudfalre:
+dns_provider:
+  cloudflare:
     api_key: "cloudflare token"
     email: "email@example.com"
   arvan:
