@@ -1,9 +1,0 @@
-{
-	"email": "matinn.zamani@gmail.com",
-	"registration": {
-		"body": {
-			"status": "valid"
-		},
-		"uri": "https://acme-v02.api.letsencrypt.org/acme/acct/2658182831"
-	}
-}
