@@ -6,19 +6,19 @@ dns_provider:
     api_key: "arvan token"
 
 domains:
-  cloudflare: [] # Keep it defined, even if empty. Otherwise, comment it.
+   cloudflare: [] # Keep it defined, even if empty. Otherwise, comment it.
 
 #If you have Cloudflare domains, use the structure below:
 
-  # cloudflare:
+   #cloudflare:
     #- "domain.example"
     #- "www.domain.example"
 
-  arvan: []   # Keep it defined, even if empty. Otherwise, comment it.
+   arvan: []   # Keep it defined, even if empty. Otherwise, comment it.
 
 #If you have Arvancloud domains, use the structure below:
 
-  #arvan: 
+   #arvan: 
     #- "domain.example"
     #- "www.domain.example" 
 

@@ -4,10 +4,11 @@
     lego --dns cloudflare \
          --email {{ letsencrypt_email }} \
          --accept-tos \
-    {% for d in domains.cloudflare %}
-      --domains {{ d | trim }} \
-    {% endfor %}
+         --domains {{ item }} \
          run
+  loop: "{{ domains.cloudflare }}"
+  loop_control:
+    label: "{{ item }}"
   environment:
     CLOUDFLARE_DNS_API_TOKEN: "{{ dns_provider.cloudflare.api_key }}"
     CLOUDFLARE_EMAIL: "{{ dns_provider.cloudflare.email }}"
@@ -21,10 +22,11 @@
     lego --dns arvancloud \
          --email {{ letsencrypt_email }} \
          --accept-tos \
-    {% for d in domains.arvan %}
-      --domains {{ d | trim }} \
-    {% endfor %}
+         --domains {{ item }} \
          run
+  loop: "{{ domains.arvan }}"
+  loop_control:
+    label: "{{ item }}"
   environment:
     ARVANCLOUD_API_KEY: "{{ dns_provider.arvan.api_key }}"
   tags: get_ssl
