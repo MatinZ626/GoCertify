@@ -35,7 +35,7 @@ Follow [ArvanCloud documentation](https://docs.arvancloud.ir/fa/accounts/iam/mac
 
 ---
 
-## 🔑 Obtaining the First SSL Certificate
+## 🔑 Obtaining the SSL Certificate
 
 1. Add your first host (example below) in:  
 
